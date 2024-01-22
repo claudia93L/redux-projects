@@ -5,6 +5,7 @@ import {
 
 const initialState = {
   cityForecastName: null,
+  cityForecastData: null,
 };
 
 const cityForecastReducer = (state = initialState, action) => {
