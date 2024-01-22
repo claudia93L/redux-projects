@@ -2,14 +2,16 @@ import ErrorPage from '../pages/404';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const NotFound = () => {
+// esporto con named export perchè mi dava problemi l'importazione su CardComponent con l'esportazione default
+export const NotFound = () => {
   const navigate = useNavigate();
 
-  /* useEffect(() => {
+  useEffect(() => {
+    // setto un timeout che, trascorsi 5 secondi, rendirizzerà l'utente alla homepage
     setTimeout(() => {
       navigate('/');
-    }, 3000);
-  }, []); */
+    }, 5000);
+  }, []);
 
   return (
     <>
@@ -17,5 +19,3 @@ const NotFound = () => {
     </>
   );
 };
-
-export default NotFound;

@@ -7,7 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import SearchResult from './pages/SearchResult';
 import { Provider } from 'react-redux';
 import store from './store/store';
-import NotFound from './components/NotFound';
+import { NotFound } from './components/NotFound';
 
 // il provider rende disponibile lo store Redux a tutti i componenti annidati a cui servirà l'accesso
 // con le Route imposto il path a cui andare per raggiungere il componente indicato con la proprietà element

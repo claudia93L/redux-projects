@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCityData } from '../actions/cityActions';
 import { setCityForecastData } from '../actions/cityForecastActions';
+import { NotFound } from '../components/NotFound';
 
 export const CardComponent = () => {
   const dispatch = useDispatch();
@@ -131,7 +132,9 @@ export const CardComponent = () => {
             )}
           </Card.Body>
         </Card>
-      ) : null}
+      ) : (
+        <NotFound></NotFound>
+      )}
     </div>
   );
 };
