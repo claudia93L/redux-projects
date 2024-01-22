@@ -9,14 +9,16 @@ export const CardComponent = ({ city }) => {
   const [cityData, setCityData] = useState(null);
   const [cityForecastData, setCityForecastData] = useState(null);
 
+  const searchedCity = useSelector((state) => state.search.searchedCity);
+
   const baseURL = 'https://api.openweathermap.org/data/2.5/weather?q=';
   const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=';
   const apiKey = '&APPID=1b2c78e3829adfa6630d5a8e796fba86&units=metric';
 
   const fetchDataToday = async () => {
     try {
-      if (city) {
-        const resp = await fetch(baseURL + city + apiKey);
+      if (searchedCity) {
+        const resp = await fetch(baseURL + searchedCity + apiKey);
         if (resp.ok) {
           const data = await resp.json();
           setCityData(data);
@@ -32,8 +34,8 @@ export const CardComponent = ({ city }) => {
 
   const fetchDataForecast = async () => {
     try {
-      if (city) {
-        const resp = await fetch(forecastURL + city + apiKey);
+      if (searchedCity) {
+        const resp = await fetch(forecastURL + searchedCity + apiKey);
         if (resp.ok) {
           const data = await resp.json();
           setCityForecastData(data.list);
@@ -50,7 +52,7 @@ export const CardComponent = ({ city }) => {
   useEffect(() => {
     fetchDataToday();
     fetchDataForecast();
-  }, [city]);
+  }, [searchedCity]);
 
   function formatDateTime(timestamp) {
     const fullDate = new Date(timestamp);

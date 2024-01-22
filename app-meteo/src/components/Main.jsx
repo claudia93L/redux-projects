@@ -6,18 +6,20 @@ import { setSearch } from '../actions/searchActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Main = () => {
+  // dichiaro la costante per utilizzare useNavigate, che sarà necessario per il passaggio al componente con il nuovo path
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-
+  // dichiaro la costante searchedCity e con useSelector la inizializzo con lo stato globale
   const searchedCity = useSelector((state) => state.search.searchedCity);
 
   // handleSearch gestisce la ricerca della città. si attiva al click sul bottone
   const handleSearch = () => {
-    // dispatch delle varie action dei reducers per valorizzare i valori di stato globali con la città cercata
+    // dispatch delle varie actions dei reducers per valorizzare i valori di stato globali con la città cercata
     dispatch(setCityName(searchedCity));
     dispatch(setSearch(searchedCity));
     dispatch(setCityForecast(searchedCity));
+    // se searchedCity è valorizzato (quindi l'input non è vuoto) al click si aprirà il nuovo componente
     if (searchedCity) {
       navigate(`/searchresults?searchedCity=${searchedCity}`);
     }
