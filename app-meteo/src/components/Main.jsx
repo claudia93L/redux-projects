@@ -10,11 +10,11 @@ const Main = () => {
 
   const dispatch = useDispatch();
 
-  const cityName = useSelector((state) => state.city.cityName);
   const searchedCity = useSelector((state) => state.search.searchedCity);
 
   // handleSearch gestisce la ricerca della città. si attiva al click sul bottone
   const handleSearch = () => {
+    // dispatch delle varie action dei reducers per valorizzare i valori di stato globali con la città cercata
     dispatch(setCityName(searchedCity));
     dispatch(setSearch(searchedCity));
     dispatch(setCityForecast(searchedCity));
@@ -36,9 +36,7 @@ const Main = () => {
             type='text'
             name='search'
             value={searchedCity}
-            onChange={(e) =>
-              dispatch(setSearch(e.target.value))
-            } 
+            onChange={(e) => dispatch(setSearch(e.target.value))}
           />
           <Button onClick={handleSearch} variant='btn btn-primary'>
             Search
