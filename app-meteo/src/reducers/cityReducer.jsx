@@ -1,8 +1,7 @@
-// si crea una funzione contenente uno switch case con tutte le varie azioni a disposizione del reducer
-// sceglierà l'operazione da svolgere a seconda del type dell'action
+// in the reducers, I create a function that will contain a switch case with all the possible acrions avilable for the reducer
+// for each case/action, it'll decide the "action" to make
 
-// con il dispatch "rilasciamo" l'action desiderata sotto forma di chiamata di funzione, e il reducer andrà a verificare quale action sia stata utilizzata per agire di conseguenza
-
+// with the dispatch, we release the desired action as a called function, and the reducer will verify which action has been called and act accordingly
 import { SET_CITY_NAME, SET_CITY_DATA } from '../actions/cityActions';
 
 const initialState = {

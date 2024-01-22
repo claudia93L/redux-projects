@@ -4,6 +4,7 @@ import searchReducer from './searchReducer';
 import cityForecastReducer from './cityForecastReducer';
 import showAlertReducer from './showAlertReducer';
 
+// with combineReducers I can create a root Reducer where to specify all the single reducers needed in the app
 const mainReducer = combineReducers({
   city: cityReducer,
   search: searchReducer,
