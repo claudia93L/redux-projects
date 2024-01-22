@@ -6,5 +6,3 @@ export const setSearch = (newSearch) => {
     payload: newSearch,
   };
 };
-
-// esportazione nominale anzichè l'esportazione dell'intero codice con il default

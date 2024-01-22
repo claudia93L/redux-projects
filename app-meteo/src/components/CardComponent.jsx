@@ -18,6 +18,7 @@ export const CardComponent = () => {
   const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=';
   const apiKey = '&APPID=1b2c78e3829adfa6630d5a8e796fba86&units=metric';
 
+  // fetch needed to get data about today's weather of the searched city
   const fetchDataToday = async () => {
     try {
       if (searchedCity) {
@@ -35,6 +36,7 @@ export const CardComponent = () => {
     }
   };
 
+  // fetch needed to get data about future forecasts of the searched city
   const fetchDataForecast = async () => {
     try {
       if (searchedCity) {
@@ -52,11 +54,13 @@ export const CardComponent = () => {
     }
   };
 
+  // at every update of searchedCity, the two fetches will be called
   useEffect(() => {
     fetchDataToday();
     fetchDataForecast();
   }, [searchedCity]);
 
+  // function that takes the forecast date and time and formats it to be more readable
   function formatDateTime(timestamp) {
     const fullDate = new Date(timestamp);
     const day = String(fullDate.getDate()).padStart(2, '0');
@@ -66,9 +70,10 @@ export const CardComponent = () => {
     return `${day}/${month} - ${hour}:${minutes}`;
   }
 
+  // the html has a few checks, to make sure it'll load only if the data about the city is there. otherwise will show the NotFound page
   return (
     <div className='d-flex justify-content-center mb-5'>
-      {cityData && cityForecastData ? (
+      {cityData && cityData.weather && cityForecastData ? (
         <Card className='text-center mt-1 mb-5 w-50'>
           <Card.Header className='bg-warning'>
             Today's weather in the city of {searchedCity}

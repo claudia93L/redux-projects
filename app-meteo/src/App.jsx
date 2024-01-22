@@ -9,8 +9,8 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import { NotFound } from './components/NotFound';
 
-// il provider rende disponibile lo store Redux a tutti i componenti annidati a cui servirà l'accesso
-// con le Route imposto il path a cui andare per raggiungere il componente indicato con la proprietà element
+// provider makes the Redux store available to all the nested components and they'll be able to access it
+// with Route I assign the path where we'll go, and with element specify the component that we'll be lead to
 const App = () => {
   return (
     <>

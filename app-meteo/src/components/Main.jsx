@@ -7,27 +7,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setShowAlert } from '../actions/showAlertActions';
 
 const Main = () => {
-  // dichiaro la costante per utilizzare useNavigate, che sarà necessario per il passaggio al componente con il nuovo path
+  // I declare a constant to use useNavigate, needed to pass on a new component with a new path
   const navigate = useNavigate();
 
-  // dichiaro una costante dispatch per utilizzare useDispatch e richiamare le actions
+  // I declare a constant to use useDispatch and call the needed actions
   const dispatch = useDispatch();
-  // dichiaro la costante searchedCity e con useSelector la inizializzo con lo stato globale
+
+  // I declare a constant, searchedCity, and with useSelector I initialize it at the global state value
   const searchedCity = useSelector((state) => state.search.searchedCity);
 
   const showAlert = useSelector((state) => state.showAlert.stateAlert);
 
-  // handleSearch gestisce la ricerca della città. si attiva al click sul bottone
+  // handleSearch handles the city's search, being activated at the button click
   const handleSearch = () => {
-    // dispatch delle varie actions dei reducers per valorizzare i valori di stato globali con la città cercata
+    // dispatch of various actions of the reducers, to give the global values the searched city value
     dispatch(setCityName(searchedCity));
     dispatch(setSearch(searchedCity));
     dispatch(setCityForecast(searchedCity));
-    // se searchedCity è valorizzato (quindi l'input non è vuoto) al click si aprirà il nuovo componente
+    // if searchedCity has a value (the input is not emptu) ten at the button click will open the new component
     if (searchedCity) {
       navigate(`/searchresults?searchedCity=${searchedCity}`);
       dispatch(setShowAlert(false));
     } else {
+      // otherwise will set the showAlert to true and show a warning alert to the user
       dispatch(setShowAlert(true));
     }
   };
