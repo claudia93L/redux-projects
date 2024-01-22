@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCityData } from '../actions/cityActions';
 import { setCityForecastData } from '../actions/cityForecastActions';
 import { NotFound } from '../components/NotFound';
+import { SpinnerLoad } from '../components/SpinnerLoad';
 
 export const CardComponent = () => {
   const dispatch = useDispatch();
@@ -14,55 +15,57 @@ export const CardComponent = () => {
     (state) => state.cityForecast.cityForecastData
   );
 
+  // I chose to use the useState instead of doing it with Redux, because I didn't have a lot of time left and because this state was meant to be used only in this componente
+  const [isLoading, setIsLoading] = useState(false);
+
   const baseURL = 'https://api.openweathermap.org/data/2.5/weather?q=';
   const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=';
   const apiKey = '&APPID=1b2c78e3829adfa6630d5a8e796fba86&units=metric';
 
-  // fetch needed to get data about today's weather of the searched city
-  const fetchDataToday = async () => {
+  // two fetch needed to get data about today's weather of the searched city and the forecest data
+  // I chose to edit my project and put them both in the same fetch to speed the loading process
+  const fetchData = async () => {
+    setIsLoading(true);
     try {
       if (searchedCity) {
-        const resp = await fetch(baseURL + searchedCity + apiKey);
-        if (resp.ok) {
-          const data = await resp.json();
-          dispatch(setCityData(data));
-          // console.log(data);
+        const todayWeatherResp = fetch(baseURL + searchedCity + apiKey);
+        const forecastResp = fetch(forecastURL + searchedCity + apiKey);
+
+        // Promise.all accepts a Promises array, and returns a new Promise which will be resolved when all the promises in the array are resolved
+        // await makes sure that the code execution will stop until the promises are resolved
+        // destructuring the array gives me the opportunity to have two distinct constants containing the two array elements
+        const [todayResponse, forecastResponse] = await Promise.all([
+          todayWeatherResp,
+          forecastResp,
+        ]);
+
+        // if the response of both requests is okay, the it'll dispatch the actions and update the status with the data coming from the API
+        if (todayResponse.ok && forecastResponse.ok) {
+          const weatherData = await todayResponse.json();
+          const forecastData = await forecastResponse.json();
+          dispatch(setCityData(weatherData));
+          dispatch(setCityForecastData(forecastData.list));
         } else {
+          // else it'll throw a console error
           console.error(
             'The HTTP request was successful, but there was an error fetching the data.'
           );
         }
       }
+      // the catch will capture the error if the response is not succesful
     } catch (error) {
       console.error('Error in the HTTP request:', error);
+      // finally, it'll set the status of the loader to false
+    } finally {
+      setIsLoading(false);
     }
   };
 
   // fetch needed to get data about future forecasts of the searched city
-  const fetchDataForecast = async () => {
-    try {
-      if (searchedCity) {
-        const resp = await fetch(forecastURL + searchedCity + apiKey);
-        if (resp.ok) {
-          const data = await resp.json();
-
-          dispatch(setCityForecastData(data.list));
-          // console.log(data);
-        } else {
-          console.error('Error in the HTTP request');
-        }
-      }
-    } catch (error) {
-      setIsFetching(false);
-      setHasError(true);
-      console.error('Error in the HTTP request:', error);
-    }
-  };
 
   // at every update of searchedCity, the two fetches will be called
   useEffect(() => {
-    fetchDataToday();
-    fetchDataForecast();
+    fetchData();
   }, [searchedCity]);
 
   // function that takes the forecast date and time and formats it to be more readable
@@ -76,9 +79,14 @@ export const CardComponent = () => {
   }
 
   // the html has a few checks, to make sure it'll load only if the data about the city is there. otherwise will show a brief message
+  // isLoading will shoe the spinner while the data is loading
+  // the card will show only if the data is successfully loaded
+  // otherwise it'll show the NotFound component
   return (
     <div className='d-flex justify-content-center mb-5'>
-      {cityData && cityForecastData && cityData.weather ? (
+      {isLoading ? (
+        <SpinnerLoad></SpinnerLoad>
+      ) : cityData && cityForecastData && cityData.weather ? (
         <Card className='text-center mt-1 mb-5 w-50'>
           <Card.Header className='bg-warning'>
             Today's weather in the city of {searchedCity}
@@ -143,7 +151,7 @@ export const CardComponent = () => {
           </Card.Body>
         </Card>
       ) : (
-        <h3>Purtroppo la città che hai cercato non esiste. prova di nuovo</h3>
+        <NotFound></NotFound>
       )}
     </div>
   );
