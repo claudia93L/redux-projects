@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom';
 export const NotFound = () => {
   const navigate = useNavigate();
 
-  /* useEffect(() => {
+  useEffect(() => {
     // setting a timeout that, after 5 secs, will redirect the user to homepage
     setTimeout(() => {
       navigate('/');
     }, 5000);
-  }, []); */
+  }, []);
 
   return (
     <>
