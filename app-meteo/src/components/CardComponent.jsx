@@ -6,14 +6,8 @@ import { setCityForecast } from '../actions/cityForecastActions';
 import { setSearch } from '../actions/searchActions';
 
 export const CardComponent = ({ city }) => {
-  /* const [cityData, setCityData] = useState(null); */
+  const [cityData, setCityData] = useState(null);
   const [cityForecastData, setCityForecastData] = useState(null);
-
-  const dispatch = useDispatch();
-
-  const [cityData, setCityData] = useState({
-    cityName: useSelector((state) => state.city.cityName),
-  });
 
   const baseURL = 'https://api.openweathermap.org/data/2.5/weather?q=';
   const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=';
@@ -60,8 +54,6 @@ export const CardComponent = ({ city }) => {
 
   function formatDateTime(timestamp) {
     const fullDate = new Date(timestamp);
-    //  padStart -> utilizzata per estendere una stringa aggiungendo caratteri specifici all'inizio della stringa fino a raggiungere una lunghezza target specificata. è utile quando si desidera formattare una stringa per assicurarsi che abbia una certa lunghezza minima e, se necessario, riempirla con caratteri di riempimento
-    // utilizzandolo, mi assicuro che se, se l'ora o la data sono di un solo numero, verrà aggiunto lo zero per avere sempre due cifre
     const day = String(fullDate.getDate()).padStart(2, '0');
     const month = String(fullDate.getMonth() + 1).padStart(2, '0');
     const hour = String(fullDate.getHours()).padStart(2, '0');

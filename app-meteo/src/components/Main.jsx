@@ -1,17 +1,25 @@
-import { useState } from 'react';
 import { Button, InputGroup, Form, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { setCityName } from '../actions/cityActions';
+import { setCityForecast } from '../actions/cityForecastActions';
+import { setSearch } from '../actions/searchActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Main = () => {
-  const [search, setSearch] = useState('');
-  const [cityData, setCityData] = useState(null);
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const cityName = useSelector((state) => state.city.cityName);
+  const searchedCity = useSelector((state) => state.search.searchedCity);
 
   // handleSearch gestisce la ricerca della città. si attiva al click sul bottone
   const handleSearch = () => {
-    setCityData(search);
-    if (search) {
-      navigate(`/searchresults?searchedCity=${search}`);
+    dispatch(setCityName(searchedCity));
+    dispatch(setSearch(searchedCity));
+    dispatch(setCityForecast(searchedCity));
+    if (searchedCity) {
+      navigate(`/searchresults?searchedCity=${searchedCity}`);
     }
   };
 
@@ -27,8 +35,10 @@ const Main = () => {
             placeholder='Search for a city...'
             type='text'
             name='search'
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            value={searchedCity}
+            onChange={(e) =>
+              dispatch(setSearch(e.target.value))
+            } 
           />
           <Button onClick={handleSearch} variant='btn btn-primary'>
             Search

@@ -1,7 +1,7 @@
 import { SET_SEARCH } from '../actions/searchActions';
 
 const initialState = {
-  search: '',
+    searchedCity: '',
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const searchReducer = (state = initialState, action) => {
     case SET_SEARCH:
       return {
         ...state,
-        search: action.payload,
+        searchedCity: action.payload,
       };
     default:
       return state;
