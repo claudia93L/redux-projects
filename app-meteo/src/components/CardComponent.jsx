@@ -1,5 +1,5 @@
 import { Card } from 'react-bootstrap';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCityData } from '../actions/cityActions';
 import { setCityForecastData } from '../actions/cityForecastActions';
@@ -7,7 +7,7 @@ import { NotFound } from '../components/NotFound';
 
 export const CardComponent = () => {
   const dispatch = useDispatch();
-
+  // initialize all the consts with their global state
   const searchedCity = useSelector((state) => state.search.searchedCity);
   const cityData = useSelector((state) => state.city.cityData);
   const cityForecastData = useSelector(
@@ -28,7 +28,9 @@ export const CardComponent = () => {
           dispatch(setCityData(data));
           // console.log(data);
         } else {
-          console.error('Error in the HTTP request');
+          console.error(
+            'The HTTP request was successful, but there was an error fetching the data.'
+          );
         }
       }
     } catch (error) {
@@ -43,6 +45,7 @@ export const CardComponent = () => {
         const resp = await fetch(forecastURL + searchedCity + apiKey);
         if (resp.ok) {
           const data = await resp.json();
+
           dispatch(setCityForecastData(data.list));
           // console.log(data);
         } else {
@@ -50,6 +53,8 @@ export const CardComponent = () => {
         }
       }
     } catch (error) {
+      setIsFetching(false);
+      setHasError(true);
       console.error('Error in the HTTP request:', error);
     }
   };
@@ -70,10 +75,10 @@ export const CardComponent = () => {
     return `${day}/${month} - ${hour}:${minutes}`;
   }
 
-  // the html has a few checks, to make sure it'll load only if the data about the city is there. otherwise will show the NotFound page
+  // the html has a few checks, to make sure it'll load only if the data about the city is there. otherwise will show a brief message
   return (
     <div className='d-flex justify-content-center mb-5'>
-      {cityData && cityData.weather && cityForecastData ? (
+      {cityData && cityForecastData && cityData.weather ? (
         <Card className='text-center mt-1 mb-5 w-50'>
           <Card.Header className='bg-warning'>
             Today's weather in the city of {searchedCity}
@@ -138,7 +143,7 @@ export const CardComponent = () => {
           </Card.Body>
         </Card>
       ) : (
-        <NotFound></NotFound>
+        <h3>Purtroppo la città che hai cercato non esiste. prova di nuovo</h3>
       )}
     </div>
   );
