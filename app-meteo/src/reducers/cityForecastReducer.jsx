@@ -1,7 +1,7 @@
 import { SET_CITY_FORECAST } from '../actions/cityForecastActions';
 
 const initialState = {
-  name: null,
+  cityForecastName: null,
 };
 
 const cityForecastReducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const cityForecastReducer = (state = initialState, action) => {
     case SET_CITY_FORECAST:
       return {
         ...state,
-        nome: action.payload,
+        cityForecastName: action.payload,
       };
     default:
       return state;

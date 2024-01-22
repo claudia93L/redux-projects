@@ -6,7 +6,7 @@
 import { SET_CITY_NAME } from '../actions/cityActions';
 
 const initialState = {
-  name: null,
+  cityName: null,
 };
 
 const cityReducer = (state = initialState, action) => {
@@ -14,7 +14,7 @@ const cityReducer = (state = initialState, action) => {
     case SET_CITY_NAME:
       return {
         ...state,
-        nome: action.payload,
+        cityName: action.payload,
       };
     default:
       return state;

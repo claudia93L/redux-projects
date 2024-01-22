@@ -1,9 +1,19 @@
 import { Card } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCityName } from '../actions/cityActions';
+import { setCityForecast } from '../actions/cityForecastActions';
+import { setSearch } from '../actions/searchActions';
 
 export const CardComponent = ({ city }) => {
-  const [cityData, setCityData] = useState(null);
+  /* const [cityData, setCityData] = useState(null); */
   const [cityForecastData, setCityForecastData] = useState(null);
+
+  const dispatch = useDispatch();
+
+  const [cityData, setCityData] = useState({
+    cityName: useSelector((state) => state.city.cityName),
+  });
 
   const baseURL = 'https://api.openweathermap.org/data/2.5/weather?q=';
   const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=';

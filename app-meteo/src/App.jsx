@@ -13,16 +13,17 @@ import store from './store/store';
 const App = () => {
   return (
     <>
-      <Provider store={store}></Provider>
-      <Header></Header>
-      <Routes>
-        <Route path='/' element={<Homepage></Homepage>}></Route>
-        <Route
-          path='/searchresults'
-          element={<SearchResult></SearchResult>}
-        ></Route>
-      </Routes>
-      <Footer></Footer>
+      <Provider store={store}>
+        <Header></Header>
+        <Routes>
+          <Route path='/' element={<Homepage></Homepage>}></Route>
+          <Route
+            path='/searchresults'
+            element={<SearchResult></SearchResult>}
+          ></Route>
+        </Routes>
+        <Footer></Footer>
+      </Provider>
     </>
   );
 };
