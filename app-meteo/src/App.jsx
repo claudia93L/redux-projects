@@ -5,10 +5,13 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { Routes, Route } from 'react-router-dom';
 import SearchResult from './pages/SearchResult';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 const App = () => {
   return (
     <>
+      <Provider store={store}></Provider>
       <Header></Header>
       <Routes>
         <Route path='/' element={<Homepage></Homepage>}></Route>
