@@ -3,10 +3,11 @@
 
 // con il dispatch "rilasciamo" l'action desiderata sotto forma di chiamata di funzione, e il reducer andrà a verificare quale action sia stata utilizzata per agire di conseguenza
 
-import { SET_CITY_NAME } from '../actions/cityActions';
+import { SET_CITY_NAME, SET_CITY_DATA } from '../actions/cityActions';
 
 const initialState = {
   cityName: null,
+  cityData: null,
 };
 
 const cityReducer = (state = initialState, action) => {
@@ -15,6 +16,11 @@ const cityReducer = (state = initialState, action) => {
       return {
         ...state,
         cityName: action.payload,
+      };
+    case SET_CITY_DATA:
+      return {
+        ...state,
+        cityData: action.payload,
       };
     default:
       return state;
