@@ -1,15 +1,17 @@
 import { Card } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCityName } from '../actions/cityActions';
-import { setCityForecast } from '../actions/cityForecastActions';
-import { setSearch } from '../actions/searchActions';
+import { setCityData } from '../actions/cityActions';
+import { setCityForecastData } from '../actions/cityForecastActions';
 
-export const CardComponent = ({ city }) => {
-  const [cityData, setCityData] = useState(null);
-  const [cityForecastData, setCityForecastData] = useState(null);
+export const CardComponent = () => {
+  const dispatch = useDispatch();
 
   const searchedCity = useSelector((state) => state.search.searchedCity);
+  const cityData = useSelector((state) => state.city.cityData);
+  const cityForecastData = useSelector(
+    (state) => state.cityForecast.cityForecastData
+  );
 
   const baseURL = 'https://api.openweathermap.org/data/2.5/weather?q=';
   const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=';
@@ -21,7 +23,7 @@ export const CardComponent = ({ city }) => {
         const resp = await fetch(baseURL + searchedCity + apiKey);
         if (resp.ok) {
           const data = await resp.json();
-          setCityData(data);
+          dispatch(setCityData(data));
           // console.log(data);
         } else {
           console.error('Error in the HTTP request');
@@ -38,7 +40,7 @@ export const CardComponent = ({ city }) => {
         const resp = await fetch(forecastURL + searchedCity + apiKey);
         if (resp.ok) {
           const data = await resp.json();
-          setCityForecastData(data.list);
+          dispatch(setCityForecastData(data.list));
           // console.log(data);
         } else {
           console.error('Error in the HTTP request');
@@ -68,7 +70,7 @@ export const CardComponent = ({ city }) => {
       {cityData && cityForecastData ? (
         <Card className='text-center mt-1 mb-5 w-50'>
           <Card.Header className='bg-warning'>
-            Today's weather in the city of {city}
+            Today's weather in the city of {searchedCity}
           </Card.Header>
           <Card.Body className='px-0'>
             {cityData && (

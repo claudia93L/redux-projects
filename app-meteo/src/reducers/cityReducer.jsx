@@ -6,8 +6,8 @@
 import { SET_CITY_NAME, SET_CITY_DATA } from '../actions/cityActions';
 
 const initialState = {
-  cityName: null,
-  cityData: null,
+  cityName: '',
+  cityData: [],
 };
 
 const cityReducer = (state = initialState, action) => {
