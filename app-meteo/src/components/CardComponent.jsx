@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCityData } from '../actions/cityActions';
 import { setCityForecastData } from '../actions/cityForecastActions';
-import { NotFound } from '../components/NotFound';
+/* import { NotFound } from '../components/NotFound'; */
 import { SpinnerLoad } from '../components/SpinnerLoad';
+import { useNavigate } from 'react-router';
 
 export const CardComponent = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   // initialize all the consts with their global state
   const searchedCity = useSelector((state) => state.search.searchedCity);
@@ -47,6 +49,7 @@ export const CardComponent = () => {
           dispatch(setCityForecastData(forecastData.list));
         } else {
           // else it'll throw a console error
+          navigate('*');
           console.error(
             'The HTTP request was successful, but there was an error fetching the data.'
           );
@@ -150,9 +153,7 @@ export const CardComponent = () => {
             )}
           </Card.Body>
         </Card>
-      ) : (
-        <NotFound></NotFound>
-      )}
+      ) : null}
     </div>
   );
 };
