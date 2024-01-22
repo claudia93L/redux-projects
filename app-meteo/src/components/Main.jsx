@@ -40,7 +40,10 @@ const Main = () => {
           <p>Search for it down below to discover it</p>
         </div>
         {showAlert && (
-          <Alert variant='warning'>
+          <Alert
+            variant='warning'
+            className='w-50 text-center align-self-center'
+          >
             Campo vuoto! Per favore, inserisci una città
           </Alert>
         )}
