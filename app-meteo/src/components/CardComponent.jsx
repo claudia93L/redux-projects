@@ -17,7 +17,7 @@ export const CardComponent = () => {
     (state) => state.cityForecast.cityForecastData
   );
 
-  // I chose to use the useState instead of doing it with Redux, because I didn't have a lot of time left and because this state was meant to be used only in this componente
+  // I chose to use the useState instead of doing it with Redux, because I didn't have a lot of time left and because this state was meant to be used only in this component
   const [isLoading, setIsLoading] = useState(false);
 
   const baseURL = 'https://api.openweathermap.org/data/2.5/weather?q=';
@@ -86,72 +86,52 @@ export const CardComponent = () => {
   // the card will show only if the data is successfully loaded
   // otherwise it'll show the NotFound component
   return (
-    <div className='d-flex justify-content-center mb-5'>
+    <div className='card-container'>
       {isLoading ? (
-        <SpinnerLoad></SpinnerLoad>
+        <SpinnerLoad />
       ) : cityData && cityForecastData && cityData.weather ? (
-        <Card className='text-center mt-1 mb-5 w-50'>
-          <Card.Header className='bg-warning'>
-            Today's weather in the city of {searchedCity}
-          </Card.Header>
-          <Card.Body className='px-0'>
-            {cityData && (
-              <>
-                <Card.Img
-                  src={`./src/assets/weather-icons/${cityData.weather[0].icon}.png`}
-                  style={{ width: 150 }}
-                  alt={cityData.weather[0].description}
-                  className='my-2'
-                ></Card.Img>
-                <Card.Title className='display-5 mb-4'>
-                  {cityData.name}, {cityData.sys.country}
-                </Card.Title>
-                <Card.Text>
-                  Temperature: <b>{cityData.main.temp}°C</b>
-                </Card.Text>
-                <Card.Text>
-                  Perceived temperature: <b>{cityData.main.feels_like} °C</b>
-                </Card.Text>
-                <Card.Text>
-                  Weather: <b>{cityData.weather[0].main}</b>
-                </Card.Text>
-                <Card.Text>
-                  Description: <b>{cityData.weather[0].description}</b>
-                </Card.Text>
-                <Card.Text>
-                  Wind speed: <b>{cityData.wind.speed} km/h</b>
-                </Card.Text>
-                <Card.Text>
-                  Humidity: <b>{cityData.main.humidity}%</b>
-                </Card.Text>
-                <div className='bg-dark text-light py-3 mb-0'>
-                  <h6>Keep scrolling to discover the full forecast</h6>
-                </div>
+        <Card className='weather-card border-0'>
+          <Card.Title className='weather-card-header'>
+            <h3>
+              {cityData.name}, {cityData.sys.country}
+            </h3>
+            <Card.Img
+              src={`./src/assets/weather-icons/${cityData.weather[0].icon}.png`}
+              style={{ width: 150 }}
+              alt={cityData.weather[0].description}
+              className='my-2'
+            ></Card.Img>
+            <h1>{cityData.main.temp}°C</h1>
 
-                {cityForecastData.map((el, i) => {
-                  const isEven = i % 2 === 0;
-                  const bgClass = isEven ? 'bg-light' : '';
+            <Card.Text>
+              Weather: {cityData.weather[0].main} - Wind: {cityData.wind.speed}{' '}
+              km/h
+            </Card.Text>
+            <Card.Text>
+              Sunset: {formatDateTime(cityData.sys.sunset * 1000)}
+            </Card.Text>
+            <Card.Text>Humidity: {cityData.main.humidity}%</Card.Text>
+          </Card.Title>
 
-                  return (
-                    <div
-                      key={el.dt}
-                      className={`d-flex flex-row px-3 py-2 justify-content-center ${bgClass}`}
-                    >
-                      <img
-                        src={`./src/assets/weather-icons/${el.weather[0].icon}.png`}
-                        alt={el.weather[0].description}
-                        style={{ width: 100 }}
-                      />
-                      <div className='d-flex flex-column text-left mx-5 justify-content-center'>
-                        <h5>{el.main.temp}°C</h5>
-                        <p>Date: {formatDateTime(el.dt_txt)}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </>
-            )}
-          </Card.Body>
+          <div className='weather-forecast'>
+            {cityForecastData.map((el, index) => (
+              <div className='forecast' key={index}>
+                <Card className='px-4 py-2 mx-0'>
+                  <Card.Img
+                    className='w-75 mb-4'
+                    src={`./src/assets/weather-icons/${el.weather[0].icon}.png`}
+                    alt={el.weather[0].description}
+                  />
+                  <Card.Text className='font-mini-cards'>
+                    {formatDateTime(el.dt * 1000)}
+                  </Card.Text>
+                  <Card.Text className='font-mini-cards'>
+                    {el.main.temp}°C
+                  </Card.Text>
+                </Card>
+              </div>
+            ))}
+          </div>
         </Card>
       ) : null}
     </div>

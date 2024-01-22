@@ -3,28 +3,24 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <Navbar expand='lg' className='navbar-light bg-light mb-5'>
-      <Container>
-        <Navbar.Brand style={{ width: '10%' }} className='text-center mx-0'>
-          <Link to='/'>
-            <img
-              src='../../src/assets/clouds-logo.png'
-              alt='Cloud illustration logo'
-              className='w-50'
-            />
-          </Link>
-        </Navbar.Brand>
-
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='me-auto'>
-            <Link to='/' className='me-3'>
-              Homepage
+    <>
+      <Navbar expand='lg' className='navbar-light mb-5'>
+        <Container>
+          <Navbar.Brand className='text-center mx-auto '>
+            <Link to='/' className='d-flex flex-column align-items-center'>
+              <img
+                src='../../src/assets/clouds-logo.png'
+                alt='Cloud illustration logo'
+                className='w-25'
+              />
+              <span style={{ fontSize: '0.5em', marginTop: '-20px' }}>
+                IntoTheClouds
+              </span>
             </Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          </Navbar.Brand>
+        </Container>
+      </Navbar>
+    </>
   );
 };
 

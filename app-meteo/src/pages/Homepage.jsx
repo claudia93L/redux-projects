@@ -3,7 +3,7 @@ import Main from '../components/Main';
 const Homepage = ({ page }) => {
   return (
     <>
-      <Main page={page}></Main>
+      <Main page={page} ></Main>
     </>
   );
 };

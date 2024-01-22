@@ -7,7 +7,7 @@ const ErrorPage = () => {
         fluid
         className='d-flex align-items-center justify-content-center'
       >
-        <Card className='text-center border border-3 border-solid rounded-3 w-50 p-5'>
+        <Card className='text-center border-0 w-50 p-5 bg-opacity'>
           <Card.Img
             src='../src/assets/404-cloud.webp'
             className='w-50 align-self-center'
