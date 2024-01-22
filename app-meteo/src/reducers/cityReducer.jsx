@@ -6,7 +6,7 @@
 import { SET_CITY_NAME } from '../actions/cityActions';
 
 const initialState = {
-  name: '',
+  name: null,
 };
 
 const cityReducer = (state = initialState, action) => {

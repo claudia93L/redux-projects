@@ -7,6 +7,7 @@ const Main = () => {
   const [cityData, setCityData] = useState(null);
   const navigate = useNavigate();
 
+  // handleSearch gestisce la ricerca della città. si attiva al click sul bottone
   const handleSearch = () => {
     setCityData(search);
     if (search) {

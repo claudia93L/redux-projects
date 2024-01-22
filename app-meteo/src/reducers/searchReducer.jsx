@@ -1,19 +1,19 @@
-import { SET_CITY_NAME } from '../actions/cityActions';
+import { SET_SEARCH } from '../actions/searchActions';
 
 const initialState = {
-  name: '',
+  search: '',
 };
 
-const cityReducer = (state = initialState, action) => {
+const searchReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_CITY_NAME:
+    case SET_SEARCH:
       return {
         ...state,
-        nome: action.payload,
+        search: action.payload,
       };
     default:
       return state;
   }
 };
 
-export default cityReducer;
+export default searchReducer;
