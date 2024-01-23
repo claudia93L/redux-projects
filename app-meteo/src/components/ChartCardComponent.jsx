@@ -17,16 +17,14 @@ const ChartCardComponent = ({ formatDateTime }) => {
   );
 
   // I extract the forecast data only about temperature
-  const temperatureData = cityForecastData.map((dataPoint) => 
-    ({
-      name: formatDateTime(dataPoint.dt_txt),
-      temperature: dataPoint.main.temp,
-    })
-  );
+  const temperatureData = cityForecastData.map((dataPoint) => ({
+    name: formatDateTime(dataPoint.dt_txt),
+    temperature: dataPoint.main.temp,
+  }));
   return (
     <div className='weather-card' style={{ marginBottom: '5rem' }}>
       <Card.Title className='weather-card-header'>
-        <h5>Temperature chart</h5>
+        <h5>Temperature stats over the next days</h5>
       </Card.Title>
 
       <ResponsiveContainer width='95%' height={200}>
