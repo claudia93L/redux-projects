@@ -7,7 +7,7 @@ const MiniCardComponent = ({ formatDateTime }) => {
   );
 
   return (
-    <div className='weather-card forecast-card'>
+    <div className='weather-card forecast-card '>
       <Card.Title className='weather-card-header'>
         <h5>Forecast every 3 hours for the next 5 days</h5>
       </Card.Title>

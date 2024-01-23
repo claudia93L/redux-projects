@@ -85,7 +85,7 @@ export const CardComponent = () => {
   // isLoading will show the spinner while the data is loading
   // the cards will show only if the data is successfully loaded
   return (
-    <div className='card-container container'>
+    <div className='card-container container d-flex flex-column flex-lg-row mx-auto'>
       {isLoading ? (
         <SpinnerLoad></SpinnerLoad>
       ) : cityData && cityForecastData && cityData.weather ? (
@@ -116,7 +116,7 @@ export const CardComponent = () => {
         </div>
       ) : null}
 
-      <div className='d-flex flex-column w-75'>
+      <div className='d-flex flex-column w-75 more-width'>
         {cityForecastData ? (
           <MiniCardComponent
             formatDateTime={formatDateTime}
