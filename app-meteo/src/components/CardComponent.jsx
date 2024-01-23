@@ -116,7 +116,7 @@ export const CardComponent = () => {
         </div>
       ) : null}
 
-      <div className='d-flex flex-column w-75 more-width'>
+      <div className='d-flex flex-column w-100 more-width'>
         {cityForecastData ? (
           <MiniCardComponent
             formatDateTime={formatDateTime}

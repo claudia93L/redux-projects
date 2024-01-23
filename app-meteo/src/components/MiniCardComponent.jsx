@@ -15,7 +15,7 @@ const MiniCardComponent = ({ formatDateTime }) => {
         {cityForecastData.map((el, index) => (
           <Card className='forecast px-4 py-2 text-center border-0' key={index}>
             <Card.Img
-              className='w-50 mb-4 mx-auto'
+              className='w-50 mb-3 mx-auto'
               src={`./src/assets/weather-icons/${el.weather[0].icon}.png`}
               alt={el.weather[0].description}
             />
