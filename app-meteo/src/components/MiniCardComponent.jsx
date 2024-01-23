@@ -20,7 +20,7 @@ const MiniCardComponent = ({ formatDateTime }) => {
               alt={el.weather[0].description}
             />
             <Card.Text className='font-mini-cards'>
-              {formatDateTime(el.dt * 1000)}
+              {formatDateTime(el.dt_txt)}
             </Card.Text>
             <Card.Text className='font-mini-cards'>{el.main.temp}°C</Card.Text>
           </Card>

@@ -84,6 +84,7 @@ export const CardComponent = () => {
   // the html has a few checks, to make sure it'll load only if the data about the city is there. otherwise will show a brief message
   // isLoading will show the spinner while the data is loading
   // the cards will show only if the data is successfully loaded
+  // cityData.sys.sunset * 1000 because we have to convert it in milliseconds
   return (
     <div className='card-container container d-flex flex-column flex-lg-row mx-auto'>
       {isLoading ? (
@@ -122,7 +123,11 @@ export const CardComponent = () => {
             formatDateTime={formatDateTime}
           ></MiniCardComponent>
         ) : null}
-        {cityForecastData ? <ChartCardComponent></ChartCardComponent> : null}
+        {cityForecastData ? (
+          <ChartCardComponent
+            formatDateTime={formatDateTime}
+          ></ChartCardComponent>
+        ) : null}
       </div>
     </div>
   );
