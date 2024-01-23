@@ -114,15 +114,15 @@ export const CardComponent = () => {
         </Card>
       ) : null}
       {cityForecastData ? (
-        <div className='card-container weather-card flex-column'>
+        <div className='weather-card flex-column forecast-card'>
           <Card.Title className='weather-card-header'>
-            <h4>Forecast every 3 hours</h4>
+            <h5>Forecast every 3 hours for the next 5 days</h5>
           </Card.Title>
-          <div className='d-flex flex-row flex-wrap'>
+          <div className='d-flex flex-row flex-wrap justify-content-center row-gap-4'>
             {cityForecastData.map((el, index) => (
-              <Card className='forecast px-4 py-2 w-25 text-center' key={index}>
+              <Card className='forecast px-4 py-2 text-center' key={index}>
                 <Card.Img
-                  className='w-75 mb-4 mx-auto'
+                  className='w-50 mb-4 mx-auto'
                   src={`./src/assets/weather-icons/${el.weather[0].icon}.png`}
                   alt={el.weather[0].description}
                 />

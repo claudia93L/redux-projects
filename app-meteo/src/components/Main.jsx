@@ -36,7 +36,10 @@ const Main = () => {
 
   return (
     <>
-      <Container fluid className='d-flex justify-content-center flex-column'>
+      <Container
+        fluid
+        className='d-flex justify-content-center flex-column mt-5'
+      >
         <div className='text-center my-5'>
           <h1>How is the weather today?</h1>
           <p>Search for it down below to discover it</p>

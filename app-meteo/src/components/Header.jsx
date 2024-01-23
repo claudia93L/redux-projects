@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <>
-      <Navbar expand='lg' className='navbar-light mb-5'>
+      <Navbar expand='lg' className='navbar-light'>
         <Container>
           <Navbar.Brand className='text-center mx-auto '>
             <Link to='/' className='d-flex flex-column align-items-center'>
