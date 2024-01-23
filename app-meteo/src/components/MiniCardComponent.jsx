@@ -11,7 +11,7 @@ const MiniCardComponent = ({ formatDateTime }) => {
       <Card.Title className='weather-card-header'>
         <h5>Forecast every 3 hours for the next 5 days</h5>
       </Card.Title>
-      <div className='d-flex flex-row flex-wrap justify-content-center row-gap-4'>
+      <div className='d-flex flex-row flex-wrap justify-content-center row-gap-4 column-gap-4'>
         {cityForecastData.map((el, index) => (
           <Card className='forecast px-4 py-2 text-center border-0' key={index}>
             <Card.Img

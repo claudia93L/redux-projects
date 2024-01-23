@@ -5,9 +5,9 @@ const ErrorPage = () => {
     <>
       <Container
         fluid
-        className='d-flex align-items-center justify-content-center mb-5'
+        className='d-flex align-items-center justify-content-center mb-5 error-card'
       >
-        <Card className='text-center border-0 w-50 p-5 bg-opacity'>
+        <Card className='text-center border-0 w-50 py-5 px-1 bg-opacity'>
           <Card.Img
             src='../src/assets/404-cloud.webp'
             className='w-25 align-self-center'

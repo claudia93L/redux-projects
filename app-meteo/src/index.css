@@ -61,7 +61,6 @@ h1 {
 .forecast {
   display: flex;
   align-items: top;
-  margin-right: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.34);
   width: 20%;
@@ -70,4 +69,51 @@ h1 {
 .font-mini-cards {
   font-size: 0.6em;
   margin-bottom: 0;
+}
+
+.change-direction {
+  flex-direction: row;
+}
+
+@media screen and (max-width: 770px) {
+  .forecast {
+    width: 40%;
+  }
+  h1 {
+    font-size: 2.6em;
+  }
+  h5,
+  .font-mini-cards {
+    font-size: 0.8em;
+  }
+  .error-card {
+    font-size: 0.7em;
+  }
+  .display-1 {
+    font-size: 3.5em;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .change-direction {
+    flex-direction: column;
+  }
+  .weather-card p.card-text:nth-child(2) {
+    margin-bottom: 16px;
+  }
+  .error-card p {
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .forecast {
+    width: 80%;
+  }
+  .error-card p {
+    font-size: 1em;
+  }
+  .error-card .card-title {
+    font-size: 2.5em;
+  }
 }

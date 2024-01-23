@@ -15,17 +15,21 @@ export const CardComponent = ({ formatDateTime }) => {
           src={`./src/assets/weather-icons/${cityData.weather[0].icon}.png`}
           style={{ width: 150 }}
           alt={cityData.weather[0].description}
-          className='my-2'
+          className='my-3'
         ></Card.Img>
-        <h1>{cityData.main.temp}°C</h1>
-
-        <Card.Text>
-          Weather: {cityData.weather[0].main} - Wind: {cityData.wind.speed} km/h
-        </Card.Text>
-        <Card.Text>
-          Sunset: {formatDateTime(cityData.sys.sunset * 1000)}
-        </Card.Text>
-        <Card.Text>Humidity: {cityData.main.humidity}%</Card.Text>
+        <h1 className='my-3'>{cityData.main.temp}°C</h1>
+        <div className='d-flex flex-column mt-5'>
+          <div className='d-flex justify-content-around change-direction'>
+            <Card.Text><b>Weather:</b> {cityData.weather[0].main}</Card.Text>
+            <Card.Text><b>Wind:</b> {cityData.wind.speed} km/h</Card.Text>
+          </div>
+          <div className='d-flex justify-content-around change-direction'>
+            <Card.Text>
+            <b>Sunset:</b> {formatDateTime(cityData.sys.sunset * 1000)}
+            </Card.Text>
+            <Card.Text><b>Humidity:</b>  {cityData.main.humidity}%</Card.Text>
+          </div>
+        </div>
       </Card.Title>
     </Card>
   );
