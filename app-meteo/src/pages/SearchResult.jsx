@@ -1,6 +1,5 @@
 import { CardComponent } from '../components/CardComponent';
 import { useLocation } from 'react-router-dom';
-
 import MiniCardComponent from '../components/MiniCardComponent';
 import ChartCardComponent from '../components/ChartCardComponent';
 import { useNavigate } from 'react-router';
@@ -14,7 +13,9 @@ const SearchResult = () => {
   const location = useLocation();
   const searchedCity = new URLSearchParams(location.search).get('searchedCity');
 
+  // useNavigate is needed to move to a different page/path/component
   const navigate = useNavigate();
+  // useDispatch is needed to dispatch the actions from the redux global store
   const dispatch = useDispatch();
 
   // initialize all the consts with their global state
