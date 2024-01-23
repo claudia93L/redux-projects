@@ -15,7 +15,7 @@ const CompanySearchResults = () => {
 
   useEffect(() => {
     getJobs();
-  }, []);
+  });
 
   const getJobs = async () => {
     try {
@@ -23,7 +23,6 @@ const CompanySearchResults = () => {
       if (response.ok) {
         const { data } = await response.json();
         dispatch(setCompanyJobs(data));
-        
       } else {
         alert('Error fetching results');
       }
@@ -31,7 +30,7 @@ const CompanySearchResults = () => {
       console.log(error);
     }
   };
-  console.log(companyJobs);
+
   return (
     <Container>
       <Row>
