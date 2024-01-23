@@ -5,8 +5,8 @@ import { setCityData } from '../actions/cityActions';
 import { setCityForecastData } from '../actions/cityForecastActions';
 import { SpinnerLoad } from '../components/SpinnerLoad';
 import { useNavigate } from 'react-router';
-import { LineChart, Line } from 'recharts';
 import MiniCardComponent from './MiniCardComponent';
+import ChartCardComponent from './ChartCardComponent';
 
 export const CardComponent = () => {
   const navigate = useNavigate();
@@ -71,48 +71,59 @@ export const CardComponent = () => {
     fetchData();
   }, [searchedCity]);
 
-  // function that takes the forecast time and formats it to be more readable
+  // function that takes the forecast date and time and formats it to be more readable
   function formatDateTime(timestamp) {
     const fullDate = new Date(timestamp);
+    const day = String(fullDate.getDate()).padStart(2, '0');
+    const month = String(fullDate.getMonth() + 1).padStart(2, '0');
     const hour = String(fullDate.getHours()).padStart(2, '0');
     const minutes = String(fullDate.getMinutes()).padStart(2, '0');
-    return ` ${hour}:${minutes}`;
+    return `${day}/${month} - ${hour}:${minutes}`;
   }
 
   // the html has a few checks, to make sure it'll load only if the data about the city is there. otherwise will show a brief message
-  // isLoading will shoe the spinner while the data is loading
-  // the card will show only if the data is successfully loaded
-
+  // isLoading will show the spinner while the data is loading
+  // the cards will show only if the data is successfully loaded
   return (
     <div className='card-container'>
       {isLoading ? (
-        <SpinnerLoad />
+        <SpinnerLoad></SpinnerLoad>
       ) : cityData && cityForecastData && cityData.weather ? (
-        <Card className='weather-card border-0'>
-          <Card.Title className='weather-card-header'>
-            <h3>
-              {cityData.name}, {cityData.sys.country}
-            </h3>
-            <Card.Img
-              src={`./src/assets/weather-icons/${cityData.weather[0].icon}.png`}
-              style={{ width: 150 }}
-              alt={cityData.weather[0].description}
-              className='my-2'
-            ></Card.Img>
-            <h1>{cityData.main.temp}°C</h1>
+        <div className='w-100'>
+          <Card className='weather-card border-0'>
+            <Card.Title className='weather-card-header'>
+              <h3>
+                {cityData.name}, {cityData.sys.country}
+              </h3>
+              <Card.Img
+                src={`./src/assets/weather-icons/${cityData.weather[0].icon}.png`}
+                style={{ width: 150 }}
+                alt={cityData.weather[0].description}
+                className='my-2'
+              ></Card.Img>
+              <h1>{cityData.main.temp}°C</h1>
 
-            <Card.Text>
-              Weather: {cityData.weather[0].main} - Wind: {cityData.wind.speed}{' '}
-              km/h
-            </Card.Text>
-            <Card.Text>
-              Sunset: {formatDateTime(cityData.sys.sunset * 1000)}
-            </Card.Text>
-            <Card.Text>Humidity: {cityData.main.humidity}%</Card.Text>
-          </Card.Title>
-        </Card>
+              <Card.Text>
+                Weather: {cityData.weather[0].main} - Wind:{' '}
+                {cityData.wind.speed} km/h
+              </Card.Text>
+              <Card.Text>
+                Sunset: {formatDateTime(cityData.sys.sunset * 1000)}
+              </Card.Text>
+              <Card.Text>Humidity: {cityData.main.humidity}%</Card.Text>
+            </Card.Title>
+          </Card>
+        </div>
       ) : null}
-      {cityForecastData ? <MiniCardComponent></MiniCardComponent> : null}
+
+      <div className='d-flex flex-column w-75'>
+        {cityForecastData ? (
+          <MiniCardComponent
+            formatDateTime={formatDateTime}
+          ></MiniCardComponent>
+        ) : null}
+        {cityForecastData ? <ChartCardComponent></ChartCardComponent> : null}
+      </div>
     </div>
   );
 };

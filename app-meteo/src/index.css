@@ -32,18 +32,21 @@ h1 {
   display: flex;
   justify-content: center;
   margin-bottom: 5rem;
+  flex-direction: row;
 }
 
 .weather-card,
-.bg-opacity,
-.forecast-card {
-  width: 45%;
+.bg-opacity {
+  /*  width: 45%; */
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.34);
   padding: 2rem;
-  display: flex;
-  margin: 1rem 1rem 5rem 1rem;
+  margin: 1rem;
+}
+
+.bg-opacity {
+  width: 45%;
 }
 
 .weather-card-header {

@@ -1,23 +1,13 @@
 import { useSelector } from 'react-redux';
 import { Card } from 'react-bootstrap';
 
-const MiniCardComponent = () => {
+const MiniCardComponent = ({ formatDateTime }) => {
   const cityForecastData = useSelector(
     (state) => state.cityForecast.cityForecastData
   );
 
-  // function that takes the forecast date and time and formats it to be more readable
-  function formatDateTime(timestamp) {
-    const fullDate = new Date(timestamp);
-    const day = String(fullDate.getDate()).padStart(2, '0');
-    const month = String(fullDate.getMonth() + 1).padStart(2, '0');
-    const hour = String(fullDate.getHours()).padStart(2, '0');
-    const minutes = String(fullDate.getMinutes()).padStart(2, '0');
-    return `${day}/${month} - ${hour}:${minutes}`;
-  }
-
   return (
-    <div className='weather-card flex-column forecast-card'>
+    <div className='weather-card forecast-card'>
       <Card.Title className='weather-card-header'>
         <h5>Forecast every 3 hours for the next 5 days</h5>
       </Card.Title>
