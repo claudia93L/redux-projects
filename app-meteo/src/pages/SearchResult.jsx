@@ -6,8 +6,9 @@ import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCityData } from '../actions/cityActions';
 import { setCityForecastData } from '../actions/cityForecastActions';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { SpinnerLoad } from '../components/SpinnerLoad';
+import { setSpinner } from '../actions/spinnerActions';
 
 const SearchResult = () => {
   const location = useLocation();
@@ -24,8 +25,7 @@ const SearchResult = () => {
     (state) => state.cityForecast.cityForecastData
   );
 
-  // I chose to use the useState instead of doing it with Redux, because I didn't have a lot of time left and because this state was meant to be used only in this component
-  const [isLoading, setIsLoading] = useState(false);
+  const isLoading = useSelector((state) => state.spinner.stateSpinner);
 
   const baseURL = 'https://api.openweathermap.org/data/2.5/weather?q=';
   const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=';
@@ -34,7 +34,7 @@ const SearchResult = () => {
   // two fetch needed to get data about today's weather of the searched city and the forecest data
   // I chose to edit my project and put them both in the same fetch to speed the loading process
   const fetchData = async () => {
-    setIsLoading(true);
+    dispatch(setSpinner(true));
     try {
       if (searchedCity) {
         const todayWeatherResp = fetch(baseURL + searchedCity + apiKey);
@@ -67,7 +67,7 @@ const SearchResult = () => {
       console.error('Error in the HTTP request:', error);
       // finally, it'll set the status of the loader to false
     } finally {
-      setIsLoading(false);
+      dispatch(setSpinner(false));
     }
   };
 
