@@ -48,7 +48,7 @@ export const CardComponent = () => {
           dispatch(setCityData(weatherData));
           dispatch(setCityForecastData(forecastData.list));
         } else {
-          // else it'll throw a console error
+          // else it'll throw a console error and I'll redirect the user to the 404 page
           navigate('*');
           console.error(
             'The HTTP request was successful, but there was an error fetching the data.'
@@ -65,7 +65,6 @@ export const CardComponent = () => {
   };
 
   // fetch needed to get data about future forecasts of the searched city
-
   // at every update of searchedCity, the two fetches will be called
   useEffect(() => {
     fetchData();
@@ -84,7 +83,7 @@ export const CardComponent = () => {
   // the html has a few checks, to make sure it'll load only if the data about the city is there. otherwise will show a brief message
   // isLoading will shoe the spinner while the data is loading
   // the card will show only if the data is successfully loaded
-  // otherwise it'll show the NotFound component
+
   return (
     <div className='card-container'>
       {isLoading ? (
@@ -112,27 +111,31 @@ export const CardComponent = () => {
             </Card.Text>
             <Card.Text>Humidity: {cityData.main.humidity}%</Card.Text>
           </Card.Title>
-
-          <div className='weather-forecast'>
+        </Card>
+      ) : null}
+      {cityForecastData ? (
+        <div className='card-container weather-card flex-column'>
+          <Card.Title className='weather-card-header'>
+            <h4>Forecast every 3 hours</h4>
+          </Card.Title>
+          <div className='d-flex flex-row flex-wrap'>
             {cityForecastData.map((el, index) => (
-              <div className='forecast' key={index}>
-                <Card className='px-4 py-2 mx-0'>
-                  <Card.Img
-                    className='w-75 mb-4'
-                    src={`./src/assets/weather-icons/${el.weather[0].icon}.png`}
-                    alt={el.weather[0].description}
-                  />
-                  <Card.Text className='font-mini-cards'>
-                    {formatDateTime(el.dt * 1000)}
-                  </Card.Text>
-                  <Card.Text className='font-mini-cards'>
-                    {el.main.temp}°C
-                  </Card.Text>
-                </Card>
-              </div>
+              <Card className='forecast px-4 py-2 w-25 text-center' key={index}>
+                <Card.Img
+                  className='w-75 mb-4 mx-auto'
+                  src={`./src/assets/weather-icons/${el.weather[0].icon}.png`}
+                  alt={el.weather[0].description}
+                />
+                <Card.Text className='font-mini-cards'>
+                  {formatDateTime(el.dt * 1000)}
+                </Card.Text>
+                <Card.Text className='font-mini-cards'>
+                  {el.main.temp}°C
+                </Card.Text>
+              </Card>
             ))}
           </div>
-        </Card>
+        </div>
       ) : null}
     </div>
   );

@@ -13,6 +13,7 @@ const cityReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CITY_NAME:
       return {
+        // with the spread operator I make a copy of the previous state, because at every update it'll get cancelled and I'd lose the previous data
         ...state,
         cityName: action.payload,
       };
