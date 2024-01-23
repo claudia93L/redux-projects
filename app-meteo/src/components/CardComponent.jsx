@@ -85,7 +85,7 @@ export const CardComponent = () => {
   // isLoading will show the spinner while the data is loading
   // the cards will show only if the data is successfully loaded
   return (
-    <div className='card-container'>
+    <div className='card-container container'>
       {isLoading ? (
         <SpinnerLoad></SpinnerLoad>
       ) : cityData && cityForecastData && cityData.weather ? (
