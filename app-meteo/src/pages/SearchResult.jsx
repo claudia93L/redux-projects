@@ -93,7 +93,7 @@ const SearchResult = () => {
     <div className='card-container container d-flex flex-column flex-lg-row mx-auto'>
       {isLoading ? (
         <SpinnerLoad></SpinnerLoad>
-      ) : cityData && cityForecastData && cityData.weather ? (
+      ) : cityData && cityForecastData ? (
         <div className='w-100'>
           <CardComponent formatDateTime={formatDateTime}></CardComponent>
         </div>
