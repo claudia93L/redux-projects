@@ -1,7 +1,7 @@
 import { SET_QUERY } from '../actions/queryActions';
 
 const initialState = {
-  query: null,
+  query: '',
 };
 
 const queryReducer = (state = initialState, action) => {
