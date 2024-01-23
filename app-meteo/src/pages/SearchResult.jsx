@@ -98,18 +98,16 @@ const SearchResult = () => {
           <CardComponent formatDateTime={formatDateTime}></CardComponent>
         </div>
       ) : null}
-      <div className='d-flex flex-column w-100 more-width'>
-        {cityForecastData ? (
+      {cityForecastData ? (
+        <div className='d-flex flex-column w-100 more-width'>
           <MiniCardComponent
             formatDateTime={formatDateTime}
           ></MiniCardComponent>
-        ) : null}
-        {cityForecastData ? (
           <ChartCardComponent
             formatDateTime={formatDateTime}
           ></ChartCardComponent>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </div>
   );
 };
