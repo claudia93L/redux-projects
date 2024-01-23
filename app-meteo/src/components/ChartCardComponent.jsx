@@ -32,7 +32,7 @@ const ChartCardComponent = ({ formatDateTime }) => {
           data={temperatureData}
           margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
         >
-          <Area type='monotone' dataKey='temperature' stroke='#0275d8' />
+          <Area type='monotone' dataKey='temperature' stroke='#0275d8' fill="#b8deff" />
           <CartesianGrid stroke='#b0daff' strokeDasharray='5 5' />
           <XAxis dataKey='name'></XAxis>
           <YAxis></YAxis>
