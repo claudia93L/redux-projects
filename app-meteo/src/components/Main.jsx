@@ -41,7 +41,7 @@ const Main = () => {
         className='d-flex justify-content-center flex-column mt-5'
       >
         <div className='text-center my-5'>
-          <h1>How is the weather today?</h1>
+          <h1>What's the weather today?</h1>
           <p>Search for it down below to discover it</p>
         </div>
         {showAlert && (
@@ -49,7 +49,7 @@ const Main = () => {
             variant='warning'
             className='w-50 text-center align-self-center'
           >
-            Campo vuoto! Per favore, inserisci una città
+            Empty field! Please, write down a city before searching
           </Alert>
         )}
         <InputGroup className='mb-3 w-50 mx-auto'>
