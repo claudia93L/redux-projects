@@ -7,7 +7,7 @@ const Footer = () => {
         fluid
         className='bg-dark text-white py-3 text-center position-fixed bottom-0'
       >
-        <p>
+        <p className='m-0'>
           <small>
             Copyright &copy; {new Date().getFullYear()} | IntoTheClouds Weather
             App
