@@ -49,9 +49,11 @@ const MainSearch = () => {
           </Form>
         </Col>
         <Col xs={10} className='mx-auto mb-5'>
-          {jobs.map((jobData) => (
-            <Job key={jobData._id} data={jobData} />
-          ))}
+          {jobs.map((jobData, index) => {
+            const color = index % 2 === 0 ? 'bg-success' : '';
+
+            return <Job key={jobData._id} data={jobData} color={color}></Job>;
+          })}
         </Col>
       </Row>
     </Container>
