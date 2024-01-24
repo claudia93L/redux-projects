@@ -31,7 +31,7 @@ const SearchResult = () => {
   const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=';
   const apiKey = '&APPID=1b2c78e3829adfa6630d5a8e796fba86&units=metric';
 
-  // two fetch needed to get data about today's weather of the searched city and the forecest data
+  // two fetch needed to get data about today's weather of the searched city and the forecast data
   // I chose to edit my project and put them both in the same fetch to speed the loading process
   const fetchData = async () => {
     dispatch(setSpinner(true));

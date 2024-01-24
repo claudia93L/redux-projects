@@ -11,8 +11,11 @@ function App() {
     <BrowserRouter>
       <Provider store={store}>
         <Routes>
-          <Route path='/' element={<MainSearch />} />
-          <Route path='/:company' element={<CompanySearchResults />} />
+          <Route path='/' element={<MainSearch></MainSearch>} />
+          <Route
+            path='/:company'
+            element={<CompanySearchResults></CompanySearchResults>}
+          />
         </Routes>
       </Provider>
     </BrowserRouter>

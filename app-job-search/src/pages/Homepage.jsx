@@ -1,9 +1,9 @@
-import Main from '../components/Main';
+import MainSearch from '../components/MainSearch';
 
 const Homepage = () => {
   return (
     <>
-      <Main></Main>
+      <MainSearch></MainSearch>
     </>
   );
 };
