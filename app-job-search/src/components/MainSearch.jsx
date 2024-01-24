@@ -3,11 +3,15 @@ import Job from './Job';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQuery } from '../actions/queryActions';
 import { setJobs } from '../actions/jobsActions';
+import { setSpinner } from '../actions/spinnerActions';
+import { SpinnerLoad } from './SpinnerLoad';
 
 const MainSearch = () => {
   const dispatch = useDispatch();
   const query = useSelector((state) => state.query.query);
   const jobs = useSelector((state) => state.jobs.jobs);
+
+  const isLoading = useSelector((state) => state.spinner.stateSpinner);
 
   const baseEndpoint =
     'https://strive-benchmark.herokuapp.com/api/jobs?search=';
@@ -21,6 +25,7 @@ const MainSearch = () => {
 
     try {
       const response = await fetch(baseEndpoint + query + '&limit=20');
+      dispatch(setSpinner(true));
       if (response.ok) {
         const { data } = await response.json();
         dispatch(setJobs(data));
@@ -29,6 +34,8 @@ const MainSearch = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      dispatch(setSpinner(false));
     }
   };
 
@@ -49,6 +56,7 @@ const MainSearch = () => {
           </Form>
         </Col>
         <Col xs={10} className='mx-auto mb-5'>
+          {isLoading ? <SpinnerLoad></SpinnerLoad> : null}
           {jobs.map((jobData, index) => {
             // to make the index start from 1
             index += 1;
