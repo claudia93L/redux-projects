@@ -33,7 +33,7 @@ const MainSearch = () => {
   };
 
   return (
-    <Container>
+    <Container className='mt-4'>
       <Row>
         <Col xs={10} className='mx-auto my-3'>
           <h1 className='display-1'>Remote Jobs Search</h1>
@@ -50,9 +50,18 @@ const MainSearch = () => {
         </Col>
         <Col xs={10} className='mx-auto mb-5'>
           {jobs.map((jobData, index) => {
+            // to make the index start from 1
+            index += 1;
             const color = index % 2 === 0 ? 'bg-success' : '';
 
-            return <Job key={jobData._id} data={jobData} color={color}></Job>;
+            return (
+              <Job
+                number={index}
+                key={jobData._id}
+                data={jobData}
+                color={color}
+              ></Job>
+            );
           })}
         </Col>
       </Row>

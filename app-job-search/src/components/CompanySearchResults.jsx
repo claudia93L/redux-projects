@@ -32,7 +32,7 @@ const CompanySearchResults = () => {
   };
 
   return (
-    <Container>
+    <Container className='mt-4'>
       <Row>
         <Col className='my-3'>
           <h1 className='display-4'>Job posting for: {params.company}</h1>

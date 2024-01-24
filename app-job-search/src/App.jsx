@@ -13,14 +13,18 @@ function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <NavbarComponent></NavbarComponent>
-        <Routes>
-          <Route path='/' element={<Homepage></Homepage>} />
-          <Route
-            path='/:company'
-            element={<CompanySearchResults></CompanySearchResults>}
-          />
-        </Routes>
+        <header className='position-fixed top-0 py-1 w-100 border-bottom border-1' style={{backgroundColor: '#131d31'}}>
+          <NavbarComponent></NavbarComponent>
+        </header>
+        <div className='py-5'>
+          <Routes>
+            <Route path='/' element={<Homepage></Homepage>} />
+            <Route
+              path='/:company'
+              element={<CompanySearchResults></CompanySearchResults>}
+            />
+          </Routes>
+        </div>
         <Footer></Footer>
       </Provider>
     </BrowserRouter>

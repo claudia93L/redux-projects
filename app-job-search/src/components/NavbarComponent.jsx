@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NavbarComponent = () => {
   return (
-    <Navbar expand='lg'>
+    <Navbar expand='lg' className='mx-5'>
       <Container>
         <Navbar.Brand>
           <Link to='/'>DreamJob</Link>
