@@ -17,6 +17,7 @@ const MainSearch = () => {
     'https://strive-benchmark.herokuapp.com/api/jobs?search=';
 
   const handleChange = (e) => {
+
     dispatch(setQuery(e.target.value));
   };
 
@@ -44,6 +45,7 @@ const MainSearch = () => {
       <Row>
         <Col xs={10} className='mx-auto my-3'>
           <h1 className='display-1'>Remote Jobs Search</h1>
+          <p>Find your dream job today!</p>
         </Col>
         <Col xs={10} className='mx-auto'>
           <Form onSubmit={handleSubmit}>
@@ -60,7 +62,7 @@ const MainSearch = () => {
           {jobs.map((jobData, index) => {
             // to make the index start from 1
             index += 1;
-            const color = index % 2 === 0 ? 'bg-success' : '';
+            const color = index % 2 === 0 ? 'bg-danger' : '';
 
             return (
               <Job
