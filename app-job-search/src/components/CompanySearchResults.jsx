@@ -34,8 +34,8 @@ const CompanySearchResults = () => {
   return (
     <Container className='mt-4'>
       <Row>
-        <Col className='my-3 rounded-5 py-4 px-5 bg-dark'>
-          <div>
+        <Col className='my-3 '>
+          <div className='mb-5'>
             <h1 className='display-4'>
               Job posting for:
               <span className='text-danger'> {params.company}</span>
@@ -43,7 +43,9 @@ const CompanySearchResults = () => {
           </div>
 
           {companyJobs.map((jobData) => (
-            <Job key={jobData._id} data={jobData} />
+            <div className='bg-dark rounded-5'>
+              <Job key={jobData._id} data={jobData}></Job>
+            </div>
           ))}
         </Col>
       </Row>
