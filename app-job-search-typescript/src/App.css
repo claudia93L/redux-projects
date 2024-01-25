@@ -1,0 +1,19 @@
+html,
+body {
+  background-color: #131d31;
+  font-size: 0.9rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+html,
+body,
+a {
+  color: rgb(201, 216, 230);
+}
+
+a:hover {
+  color: rgb(160, 205, 248);
+}

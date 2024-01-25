@@ -8,21 +8,21 @@ import { SpinnerLoad } from './SpinnerLoad';
 
 const MainSearch = () => {
   const dispatch = useDispatch();
-  const query = useSelector((state) => state.query.query);
-  const jobs = useSelector((state) => state.jobs.jobs);
+  const query = useSelector((state: any) => state.query.query);
+  const jobs = useSelector((state: any) => state.jobs.jobs);
 
-  const isLoading = useSelector((state) => state.spinner.stateSpinner);
+  const isLoading = useSelector((state: any) => state.spinner.stateSpinner);
 
   const baseEndpoint =
     'https://strive-benchmark.herokuapp.com/api/jobs?search=';
 
   // this function handles the setting of the query state in the redux store, taking the value from the input
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     dispatch(setQuery(e.target.value));
   };
 
   // this function manages the submit event and prevents default to avoid the reloading of the page
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     try {
@@ -45,6 +45,8 @@ const MainSearch = () => {
     }
   };
 
+  const chooseBgColor = (index: number) => (index % 2 === 0 ? 'bg-danger' : '');
+
   return (
     <Container style={{ marginTop: '8%' }}>
       <Row>
@@ -64,17 +66,17 @@ const MainSearch = () => {
         </Col>
         <Col xs={10} className='mx-auto mb-5'>
           {isLoading ? <SpinnerLoad></SpinnerLoad> : null}
-          {jobs.map((jobData, index) => {
+
+          {jobs.map((jobData: any , index: number) => {
             // to make the index start from 1
             index += 1;
-            const color = index % 2 === 0 ? 'bg-danger' : '';
 
             return (
               <Job
                 number={index}
                 key={jobData._id}
                 data={jobData}
-                color={color}
+                color={chooseBgColor(index)}
               ></Job>
             );
           })}

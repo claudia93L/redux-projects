@@ -8,7 +8,7 @@ import { setCompanyJobs } from '../actions/jobsActions';
 const CompanySearchResults = () => {
   const dispatch = useDispatch();
   const params = useParams();
-  const companyJobs = useSelector((state) => state.jobs.companyJobs);
+  const companyJobs = useSelector((state: any) => state.jobs.companyJobs);
 
   const baseEndpoint =
     'https://strive-benchmark.herokuapp.com/api/jobs?company=';
@@ -43,7 +43,7 @@ const CompanySearchResults = () => {
             </h1>
           </div>
 
-          {companyJobs.map((jobData) => (
+          {companyJobs.map((jobData: any) => (
             <div className='bg-dark rounded-5'>
               <Job key={jobData._id} data={jobData}></Job>
             </div>
