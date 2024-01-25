@@ -9,10 +9,16 @@ const Job = ({ data, color, number }) => {
         {number && `${number}.`}{' '}
         <Link to={`/${data.company_name}`}>{data.company_name}</Link>
       </Col>
-      <Col xs={9} className='fw-bold'>
+      <Col xs={5} className='fw-bold'>
         <a href={data.url} target='_blank' rel='noreferrer'>
           {data.title}
         </a>
+      </Col>
+      <Col xs={2}>
+        <p>{data.candidate_required_location}</p>
+      </Col>
+      <Col xs={2}>
+        <p>{data.category}</p>
       </Col>
     </Row>
   );

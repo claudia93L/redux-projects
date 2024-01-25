@@ -17,7 +17,6 @@ const MainSearch = () => {
     'https://strive-benchmark.herokuapp.com/api/jobs?search=';
 
   const handleChange = (e) => {
-
     dispatch(setQuery(e.target.value));
   };
 
@@ -41,7 +40,7 @@ const MainSearch = () => {
   };
 
   return (
-    <Container className='mt-4'>
+    <Container style={{ marginTop: '8%' }}>
       <Row>
         <Col xs={10} className='mx-auto my-3'>
           <h1 className='display-1'>Remote Jobs Search</h1>
