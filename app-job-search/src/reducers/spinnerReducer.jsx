@@ -1,19 +1,17 @@
-import { SET_SPINNER } from '../actions/spinnerActions';
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  stateSpinner: false,
-};
+const spinnerSlice = createSlice({
+  name: 'spinner',
+  initialState: {
+    stateSpinner: false,
+  },
+  reducers: {
+    setSpinner: (state, action) => {
+      state.stateSpinner = action.payload;
+    },
+  },
+});
 
-const spinnerReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_SPINNER:
-      return {
-        ...state,
-        stateSpinner: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+export const { setSpinner } = spinnerSlice.actions;
 
-export default spinnerReducer;
+export default spinnerSlice.reducer;

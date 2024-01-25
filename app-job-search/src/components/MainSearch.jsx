@@ -1,10 +1,10 @@
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import Job from './Job';
 import { useDispatch, useSelector } from 'react-redux';
-import { setQuery } from '../actions/queryActions';
-import { setJobs } from '../actions/jobsActions';
-import { setSpinner } from '../actions/spinnerActions';
 import { SpinnerLoad } from './SpinnerLoad';
+import { setQuery } from '../reducers/queryReducer';
+import { setSpinner } from '../reducers/spinnerReducer';
+import { setJobs } from '../reducers/jobsReducer';
 
 const MainSearch = () => {
   const dispatch = useDispatch();

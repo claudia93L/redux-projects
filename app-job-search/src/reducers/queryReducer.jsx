@@ -1,19 +1,16 @@
-import { SET_QUERY } from '../actions/queryActions';
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  query: '',
-};
+const querySlice = createSlice({
+  name: 'query',
+  initialState: {
+    query: '',
+  },
+  reducers: {
+    setQuery: (state, action) => {
+      state.query = action.payload;
+    },
+  },
+});
 
-const queryReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_QUERY:
-      return {
-        ...state,
-        query: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-export default queryReducer;
+export const { setQuery } = querySlice.actions;
+export default querySlice.reducer;

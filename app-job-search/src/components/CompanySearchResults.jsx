@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Job from './Job';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCompanyJobs } from '../actions/jobsActions';
+import { setCompanyJobs } from '../reducers/jobsReducer';
 
 const CompanySearchResults = () => {
   const dispatch = useDispatch();

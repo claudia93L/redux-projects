@@ -1,26 +1,21 @@
-import { SET_JOBS, SET_COMPANY_JOBS } from '../actions/jobsActions';
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  jobs: [],
-  companyJobs: [],
-};
+const jobsSlice = createSlice({
+  name: 'jobs',
+  initialState: {
+    jobs: [],
+    companyJobs: [],
+  },
+  reducers: {
+    setJobs: (state, action) => {
+      state.jobs = action.payload;
+    },
+    setCompanyJobs: (state, action) => {
+      state.companyJobs = action.payload;
+    },
+  },
+});
 
-const jobsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_JOBS:
-      return {
-        ...state,
-        jobs: action.payload,
-      };
+export const { setJobs, setCompanyJobs } = jobsSlice.actions;
 
-    case SET_COMPANY_JOBS:
-      return {
-        ...state,
-        companyJobs: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-export default jobsReducer;
+export default jobsSlice.reducer;
