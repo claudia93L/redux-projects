@@ -15,8 +15,8 @@ const ErrorPage = () => {
           <Card.Title className='display-1 my-4'>Oh no!</Card.Title>
           <Card.Body className='w-75 align-self-center'>
             <Card.Text className='h5'>
-              Mi spiace, non abbiamo trovato ciò che cercavi. Sarai
-              reindirizzato alla home tra pochi istanti
+              I'm sorry, I couldn't find what you searched for. You'll be
+              redirected to the home page in a few moments.
             </Card.Text>
           </Card.Body>
         </Card>
